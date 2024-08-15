@@ -1,1 +1,1 @@
-# LibDispellable-1.0
+Revision of https://github.com/AdiAddons/LibDispellable-1.0
