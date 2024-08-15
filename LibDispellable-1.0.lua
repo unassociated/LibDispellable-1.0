@@ -31,6 +31,26 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 --]]
 
+UnitBuff = UnitBuff or function(unitToken, index, filter)
+  local auraData = C_UnitAuras.GetBuffDataByIndex(unitToken, index, filter)
+  if not auraData then
+    return nil
+  end
+
+  return AuraUtil.UnpackAuraData(auraData)
+end
+
+UnitDebuff = UnitDebuff or function(unitToken, index, filter)
+  local auraData = C_UnitAuras.GetDebuffDataByIndex(unitToken, index, filter)
+  if not auraData then
+    return nil
+  end
+
+  return AuraUtil.UnpackAuraData(auraData)
+end
+
+local GetSpellTexture = C_Spell and C_Spell.GetSpellTexture or GetSpellTexture
+local GetSpellInfo = C_Spell and C_Spell.GetSpellInfo or GetSpellInfo
 local MAJOR, MINOR = "LibDispellable-1.0", 30
 assert(LibStub, MAJOR.." requires LibStub")
 local lib = LibStub:NewLibrary(MAJOR, MINOR)
